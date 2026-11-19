@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">UTS_PBP</string>
+    <string name="event_registration">EVENT REGISTRATION</string>
+    <string name="nama_event">Nama Event</string>
+    <string name="jumlah_tiket">Jumlah Tiket</string>
+    <string name="hitung_dan_lihat_hasil">Hitung dan Lihat Hasil</string>
+    <string name="nama_peserta">Nama Peserta</string>
+    <string name="ringkasan">Ringkasan</string>
+    <string name="total">Total</string>
+    <string name="judul" />
+    <string name="tombol_hitung" />
+</resources>
