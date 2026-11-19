@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val tarif: int = 75000
+            val tarif: Int = 75000
             val total: Int = jumlah * tarif // Perbaikan : Menghitung total menggunakan perkalian Int
             val intent = Intent(this, ResultActivity::class.java) // Penjelasan : Membuat Explicit Intent ke ResultActivity
 
