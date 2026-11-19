@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
@@ -20,46 +21,45 @@ class MainActivity : AppCompatActivity() {
             val teksSatu = satu.text.toString().trim()
             val teksDua = dua.text.toString().trim()
 
-            // PERBAIKAN: Konversi input menjadi Int secara aman
-            val jumlah: Int = jumlahView.text.toString().trim().toInt()
+            // perbaikan: Konversi input menjadi Int secara aman
+            val jumlah: Int? = jumlahView.text.toString().trim().toIntOrNull()
 
-            // PENJELASAN: Validasi nama peserta dan nama event
+            // penjelasan: Memeriksa nama peserta
             if (teksSatu.isEmpty()) {
-                satu.error = "Nama peserta harus diisi"
+                Toast.makeText(this, "Nama peserta harus diisi", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
+            // penjelasan: Memeriksa nama event
             if (teksDua.isEmpty()) {
-                dua.error = "Nama event harus diisi"
+                Toast.makeText(this, "Nama event harus diisi", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            // Penjelasan : Validasi input angka
+            // penjelasan: Memeriksa input jumlah tiket
             if (jumlah == null) {
-                jumlahView.error = "Masukkan jumlah tiket yang valid"
+                Toast.makeText(this, "Jumlah tiket harus berupa angka", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            // Penjelasan : Jumlah tiket harus 1 sampai 10
+            // penjelasan: Jumlah tiket harus 1 sampai 10
             if (jumlah !in 1..10) {
-                jumlahView.error = "Jumlah tiket harus 1-10"
+                Toast.makeText(this, "Jumlah tiket harus 1 sampai 10", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
+            // penjelasan: Menghitung total harga tiket
             val tarif: Int = 75000
-            val total: Int = jumlah * tarif // Perbaikan : Menghitung total menggunakan perkalian Int
-            val intent = Intent(this, ResultActivity::class.java) // Penjelasan : Membuat Explicit Intent ke ResultActivity
+            val total: Int = jumlah * tarif
 
-            // Penjelasan: Mengirim data String dan Int menggunakan putExtra
+            // Penjelasan: Mengirim data ke halaman hasil
+            val intent = Intent(this, ResultActivity::class.java)
             intent.putExtra("nama_peserta", teksSatu)
             intent.putExtra("nama_event", teksDua)
             intent.putExtra("jumlah_tiket", jumlah)
             intent.putExtra("total_harga", total)
 
-            // Untuk Membuka halaman hasil
             startActivity(intent)
         }
     }
 }
-
-
